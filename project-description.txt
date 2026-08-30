@@ -1,0 +1,463 @@
+This project is a modern business and software company website for a brand called M.A.R.J.E.N.E. It is designed as a premium marketing website for a software development company that offers web development, mobile apps, AI solutions, business automation, and digital systems for organizations. The frontend is already built and polished, but the content and structure are still mostly hardcoded. The goal of the backend is to turn this into a dynamic content-management system where a non-technical user can update services, portfolio work, job openings, contact information, text content, pricing/CTA buttons, and website sections without editing code directly.
+
+The site currently has a premium aesthetic: clean white backgrounds, strong typography, minimal gradients, limited emoji usage, modern typography, subtle glass effects, soft borders, and a luxury-tech brand look. The design is intentionally clean and professional rather than cluttered. The visual direction is very “modern startup/agency” and should remain consistent across the site.
+
+1. Brand and business purpose
+The business is a software development company that helps businesses, organizations, and startups build digital products and systems. The company provides:
+- Web applications
+- Mobile apps
+- AI systems and automation
+- Business software
+- Enterprise solutions
+- Digital transformation support
+- Custom software for schools, hospitals, churches, and businesses
+
+The site is not just a portfolio; it is also a lead-generation website. The main purpose is to:
+- Build brand trust
+- Explain the company’s capabilities
+- Showcase projects and services
+- Attract inbound clients
+- Generate contact leads
+- Promote new projects and careers
+- Present the business as a credible software partner
+
+The site is designed to convert visitors into clients through contact and WhatsApp lead flows.
+
+2. Current frontend structure
+The project is built with Next.js using the App Router. The frontend is mainly composed of:
+- A global design system in a central stylesheet
+- Reusable sections and components
+- Route-based pages for each major section
+- A fixed navigation bar
+- A fully responsive layout for desktop and mobile
+- Animated visuals and motion effects
+
+The app structure is organized into top-level pages such as:
+- Home
+- About
+- Services
+- Portfolio
+- Careers
+- Contact
+
+Each page has a distinct purpose and visual treatment, but they all share the same design language.
+
+3. Home page
+The home route acts as the main landing page and is designed to establish the brand and convert users quickly.
+
+Main sections on the home page:
+1. Navbar
+- Fixed at the top
+- Includes brand logo/title
+- Includes navigation links
+- On mobile it opens as a side drawer from the right
+- Includes a CTA button such as “Start a project”
+- Active route is highlighted
+
+2. Hero section
+- Large headline with the brand name and “SOFTWARE DEVELOPMENT”
+- Includes a premium badge near the top
+- Includes a video showcase directly under the headline
+- The video area displays a medium-sized media card
+- Multiple short video clips are shown one after another automatically
+- The next video starts when the current one ends
+- CTA buttons below the video area:
+  - Get Started
+  - Explore Services
+
+3. Technology marquee / stack slider
+- A continuous horizontal moving marquee of technology names and icons
+- Examples include:
+  - Flutter
+  - Laravel
+  - React
+  - Vue
+  - Node.js
+  - Python
+  - Django
+  - Docker
+  - MySQL
+  - PostgreSQL
+  - Firebase
+  - Supabase
+  - OpenAI
+  - Linux
+  - AWS
+  - Azure
+  - Google Cloud
+- The marquee should run continuously and feel like a live technology showcase
+- This is a strong brand signal for tech capability
+
+4. Services preview
+- A grid of service cards
+- Each card represents a type of service or product offered
+- Cards are visually large and image-driven
+- There is a CTA button to view all services
+- Services include categories like:
+  - Web development
+  - Mobile app development
+  - AI automation
+  - School systems
+  - Church systems
+  - Hospital systems
+  - Custom enterprise solutions
+
+5. Image showcase
+- A gallery section using branded or product-style images
+- Visual proof of solutions and execution capability
+
+6. Technology stack section / logo slider
+- Another technology presentation section
+- More structured and visually organized than the marquee
+- Used to reinforce the technological depth of the company
+
+7. Portfolio preview
+- A highlight section showing a few selected projects
+- Each portfolio item includes:
+  - project image
+  - category
+  - title
+  - description
+  - tech tags
+- It is designed to show business credibility and outcomes
+
+8. Poster or showcase carousel
+- A rotating carousel with promotional or project-type slides
+- Text overlays appear on top of images
+- It gives the site motion and variation
+
+9. Final CTA section
+- Final conversion section encouraging visitors to contact the company
+- Usually includes:
+  - a short persuasive text
+  - a primary CTA button
+  - a secondary button
+
+10. Footer
+- Brand positioning
+- Navigation links
+- Social links
+- Contact information
+- Business email / phone / location
+- Newsletter field area
+- Copyright and policy links
+
+4. About page
+The About page is a storytelling page that explains who the company is and why it exists.
+
+It includes:
+- Hero image or visual
+- Brand story
+- Company mission
+- Company vision
+- Core values
+- Timeline of business growth or milestones
+- Three or more key achievement/stat cards
+- A closing CTA section
+
+The content style is polished, intentional, and designed to build trust.
+
+Typical content blocks:
+- Story: what the company does and how it works
+- Mission: how the company helps clients and solves real business problems
+- Vision: long-term transformation and innovation goals
+- Values:
+  - quality
+  - reliability
+  - innovation
+  - partnership
+  - transparency
+  - execution
+- Timeline:
+  - early formation
+  - first major product
+  - expansion into new sectors
+  - current growth stage
+
+This page should become fully editable through CMS content fields rather than code.
+
+5. Services page
+The Services page provides a deeper breakdown of offerings.
+
+The service model should include:
+- Name
+- Slug or URL path
+- Short summary
+- Full description
+- Image or media
+- Icon
+- Features list
+- Deliverables
+- Suitable audience or industries
+
+Examples from the current project:
+- Software development
+- Mobile app development
+- AI automation
+- School management systems
+- Hospital systems
+- Church systems
+- Business apps
+- Custom enterprise software
+
+This page is ideal for a dynamic CMS because each service can be managed individually.
+
+6. Portfolio page
+The Portfolio page is designed to showcase completed work, case studies, and project outcomes.
+
+Portfolio objects should include:
+- Project title
+- Project category
+- Client type or industry
+- Short summary
+- Full case study content
+- Image gallery
+- Technologies used
+- Project result or outcome
+- Start/end timeline
+- Featured flag
+- Status (featured, archived, active)
+
+The current design already suggests:
+- filter buttons
+- category tags
+- project cards with overlays
+- strong visuals
+- call-to-action links
+
+This section is ideal for a backend admin panel where the owner can add new client projects.
+
+7. Careers page
+The Careers page is about building the employer brand.
+
+Likely sections:
+- Intro section
+- Benefits grid
+- Why work here
+- Job roles list
+- Open positions
+- Application CTA
+
+Career data should include:
+- Role title
+- Department
+- Employment type
+- Location
+- Short description
+- Responsibilities
+- Requirements
+- Application link or contact email
+- Deadline if relevant
+
+This is an area where the backend should allow adding or removing job postings easily.
+
+8. Contact page
+The Contact page is a real lead-generation page.
+
+Current features include:
+- Contact details
+- Email and phone fields
+- WhatsApp message flow
+- Contact form
+- Social links
+- Client inquiry type
+- Remote or direct contact options
+
+The contact form should collect:
+- Full name
+- Email
+- Phone
+- Company or organization
+- Project type or service needed
+- Message
+- Preferred contact method
+- Budget range if needed
+
+WhatsApp feature:
+The website should allow a visitor to send a pre-filled WhatsApp message with the information they entered in the form, instead of only submitting a normal form. This is important because the business wants simpler lead capture and better conversion.
+
+The backend should store those contact submissions and optionally send them to email or a CRM.
+
+9. Design system and styling principles
+The current frontend follows a design system built around:
+- clean white backgrounds
+- black/gray text
+- red accent color
+- modern premium typography
+- soft shadows
+- rounded corners
+- consistent spacing
+- minimalist layout
+- no heavy gradients
+- no excessive emoji use
+- subtle luxury-tech vibe
+
+This should remain consistent across all pages. The backend should not break the design; instead, it should feed content into this design system.
+
+10. Current data is mostly static
+At the moment, much of the website content is hardcoded in the frontend. This includes:
+- hero copy
+- service items
+- portfolio entries
+- about content
+- values
+- timeline items
+- contact details
+- job postings
+- CTA labels
+- social links
+- technology tags
+
+This is exactly what the backend should take over. The website needs to become content-driven instead of code-driven.
+
+11. Best backend goal
+The best backend model for this project is a content-management system where a user can:
+- log into an admin dashboard
+- add new content without touching frontend code
+- update texts on any page
+- change images and videos
+- add new services
+- add portfolio items
+- update careers
+- update contact details
+- manage social links
+- upload assets
+- manage homepage sections
+
+This should feel like a real website administration platform, not just a simple database.
+
+12. Recommended backend architecture
+The ideal setup for this project is:
+- Next.js full-stack app
+- PostgreSQL as the main database
+- Prisma as ORM
+- Authentication for admin users
+- Cloud storage or local media upload for images and videos
+- API routes or server actions for content management
+- Admin dashboard for all content updates
+- Email and WhatsApp integration for leads
+
+Why this works well:
+Because the website already uses Next.js, it is easiest to extend the same project into a full-stack system where the frontend and backend live in one app. This reduces complexity and makes updates easier.
+
+Recommended modules:
+1. Admin auth
+2. Site settings
+3. Pages and sections
+4. Services
+5. Portfolio
+6. Careers
+7. Contact leads
+8. Media library
+9. SEO settings
+10. Social profile manager
+
+13. Suggested database models
+You will likely need models such as:
+- User
+- SiteSettings
+- Page
+- Section
+- Service
+- PortfolioProject
+- CareerOpening
+- ContactSubmission
+- MediaAsset
+- SocialLink
+- Tag
+- Category
+
+Example fields for Service:
+- id
+- title
+- slug
+- shortDescription
+- longDescription
+- image
+- icon
+- order
+- featured
+- status
+
+Example fields for PortfolioProject:
+- id
+- title
+- category
+- summary
+- description
+- thumbnail
+- gallery
+- technologies
+- featured
+- status
+
+Example fields for ContactSubmission:
+- id
+- name
+- email
+- phone
+- company
+- serviceInterest
+- message
+- createdAt
+- status
+
+Example fields for SiteSettings:
+- brandName
+- tagline
+- primaryColor
+- email
+- phone
+- whatsappNumber
+- location
+- metaTitle
+- metaDescription
+- socialLinks
+
+14. What the admin interface should allow
+A good admin panel for this project should allow:
+- editing the homepage headline
+- editing hero video content
+- changing the company tagline
+- uploading/removing images
+- adding or editing service cards
+- editing portfolio items
+- adding new jobs
+- updating company story and mission
+- managing social media links
+- managing contact information
+- creating new pages or sections
+- switching featured projects
+- editing CTA labels
+- updating SEO metadata
+
+This should be user-friendly enough that the owner can manage the site without developer help.
+
+15. The real goal of this backend
+The real goal is not just to store content. The real goal is to create a system where:
+- the website owner can update the business without reading code
+- the company can add new offers or features easily
+- the portfolio can be updated constantly
+- the marketing pages stay consistent
+- the contact flow stays connected
+- the site remains future-ready for business growth
+
+This is a modern content-driven business website, not just a static landing page.
+
+16. Recommended first backend step
+The best first backend milestone is:
+1. Build an admin login system
+2. Create a SiteSettings model
+3. Create a Services model
+4. Create a Portfolio model
+5. Create a ContactSubmission model
+6. Build a dashboard to manage those records
+7. Connect the homepage and services/portfolio pages to that database
+8. Then expand to careers and about page content
+
+This is the cleanest path to transform the current frontend into a real content-managed application.
+
+17. Final summary
+This project is a premium software company website that already has a strong visual identity and structure. It is designed to attract clients and communicate technical capability. The next phase is to convert it from a static frontend into a content-managed system that allows non-technical users to update sections, text, images, services, portfolio entries, job postings, and contact data without editing code.
+
+If you build the backend around a flexible content system and a simple admin dashboard, this site can evolve into a serious business platform that supports ongoing growth without developer dependency.

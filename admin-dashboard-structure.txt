@@ -1,0 +1,361 @@
+Suggested Admin Dashboard Structure for M.A.R.J.E.N.E Website
+
+Goal:
+Create a backend CMS/admin system that allows the business owner to update the website without editing code. The admin dashboard should be the place where content, product/service offerings, portfolio, jobs, contact settings, media, and site information are managed.
+
+1. Dashboard overview
+Main dashboard should show:
+- Total services
+- Total portfolio projects
+- Open job postings
+- Contact leads received
+- Recent activity
+- Quick actions
+- Site health / publishing status
+
+Sections on the dashboard:
+- Overview
+- Content management
+- Media library
+- Leads / contact submissions
+- Settings
+- Users / roles
+
+2. Authentication and access control
+Features:
+- Admin login/signup
+- Role-based access
+- Super admin and editor roles
+- Secure password management
+- Session handling
+- Protected routes
+
+Roles:
+- Super Admin: full access
+- Editor: update content, media, portfolio, services
+- Viewer: view dashboard data but no editing
+
+3. Site settings module
+This should manage all global website configuration.
+
+Fields:
+- Brand name
+- Tagline
+- Logo upload
+- Primary accent color
+- Secondary accent color
+- Favicon
+- Company email
+- Phone number
+- WhatsApp number
+- Office location
+- Social media links
+- Meta title
+- Meta description
+- SEO keywords
+- Footer text
+- Contact heading
+
+Pages under this module:
+- General settings
+- Contact settings
+- Social settings
+- SEO settings
+
+4. Homepage management
+The homepage should be controllable from an admin panel, not hardcoded.
+
+Sections to manage:
+- Hero badge text
+- Hero headline text
+- CTA button labels
+- CTA button links
+- Hero video selection / upload
+- Technology marquee items
+- Featured services section
+- Featured portfolio section
+- Showcase slides carousel
+- Final CTA section
+
+Fields for homepage items:
+- Section title
+- Section subtitle
+- Active/inactive status
+- Order number
+- Media upload
+- CTA link
+
+5. Services management
+This should be a full CRUD module.
+
+Service fields:
+- Title
+- Slug
+- Short description
+- Long description
+- Image
+- Icon
+- Status (draft/published)
+- Featured flag
+- Sort order
+- Features list
+- Industries it serves
+
+Actions:
+- Add service
+- Edit service
+- Delete service
+- Publish/unpublish
+- Rearrange order
+
+Suggested service pages:
+- List all services
+- Add new service
+- View single service
+- Edit single service
+
+6. Portfolio management
+This should control featured business work and projects.
+
+Portfolio fields:
+- Project name
+- Slug
+- Category
+- Short summary
+- Full case study content
+- Thumbnail image
+- Gallery images
+- Technologies used
+- Client type / industry
+- Outcome or result
+- Project date
+- Featured flag
+- Status
+- Visible on homepage or not
+
+Actions:
+- Add project
+- Edit project
+- Delete project
+- Filter by category
+- Mark featured
+- Sort project order
+
+Suggested portfolio pages:
+- Portfolio overview
+- Project details page
+- Add/edit project
+
+7. About page management
+This page should allow the business owner to update the story content.
+
+Content sections:
+- Main intro story
+- Mission statement
+- Vision statement
+- Core values
+- Timeline entries
+- Company metrics
+- Images and illustrations
+
+Fields for values:
+- Title
+- Description
+- Icon
+- Sort order
+
+Fields for timeline entries:
+- Year
+- Title
+- Description
+
+Fields for metrics:
+- Number
+- Suffix
+- Label
+
+8. Careers management
+This module handles employment opportunities and the company’s culture.
+
+Fields for careers:
+- Role title
+- Department
+- Employment type
+- Location
+- Description
+- Responsibilities
+- Requirements
+- Application email or URL
+- Deadline
+- Status
+- Featured flag
+
+Actions:
+- Create job posting
+- Edit posting
+- Close recruitment
+- Archive job
+- Publish/unpublish
+
+9. Contact lead management
+This is essential for lead generation and conversion.
+
+Fields for forms/submissions:
+- Full name
+- Email
+- Phone number
+- Company name
+- Project interest
+- Message
+- Budget range
+- Preferred contact method
+- Created date
+- Status (new, viewed, contacted, closed)
+
+Actions:
+- View all leads
+- Filter by status
+- Mark as contacted
+- Add internal notes
+- Export to CSV
+- Connect to email or CRM later
+
+10. Media library
+This module manages all uploaded files.
+
+Supported media:
+- Images
+- Videos
+- Icons
+- Banners
+- Hero visuals
+
+Features:
+- Upload media
+- Rename media
+- Delete media
+- View file metadata
+- Tag media by page or section
+- Search media by title
+- Choose media for services, portfolio, or homepage
+
+11. Content blocks / reusable sections
+To make the site flexible, create reusable section blocks.
+
+Possible blocks:
+- Hero section
+- Text + image section
+- Stats section
+- Call-to-action section
+- Testimonial section
+- Service highlight block
+- Feature block
+- Large image gallery block
+
+This allows the owner to build and arrange page sections without writing code.
+
+12. SEO and metadata management
+The content admin should allow editing page-specific SEO details.
+
+For each page or post:
+- Meta title
+- Meta description
+- Keywords
+- OG image
+- Canonical URL
+- Social share title
+- Social share description
+
+13. Publishing workflow
+The admin should support clear publishing states.
+
+Statuses:
+- Draft
+- Review
+- Published
+- Archived
+
+Workflow:
+- Create item
+- Save draft
+- Review content
+- Publish
+- Archive when no longer relevant
+
+14. Dashboard UX / UI design
+The admin dashboard should follow a simple professional style.
+
+Suggested layout:
+- Sidebar navigation
+- Top header with search and user profile
+- Main content area with cards and tables
+- Modals for form editing
+- Tabbed sections for multi-step items
+- Filter bars and sort options
+- Clear action buttons
+
+Main menu items:
+- Overview
+- Site Settings
+- Homepage
+- About
+- Services
+- Portfolio
+- Careers
+- Contact Leads
+- Media Library
+- Users
+- Logs / activity
+
+15. Suggested API structure
+The backend should expose API endpoints or server actions for the frontend to fetch data.
+
+Examples:
+- GET /api/site-settings
+- PUT /api/site-settings
+- GET /api/services
+- POST /api/services
+- GET /api/portfolio
+- POST /api/portfolio
+- GET /api/careers
+- POST /api/careers
+- GET /api/contact-leads
+- POST /api/contact-leads
+- GET /api/homepage
+- PUT /api/homepage
+
+16. Frontend data flow
+The public site should fetch data from the backend rather than rely only on code-hardcoded arrays.
+
+Example flow:
+- Admin adds a service in dashboard
+- Service is stored in database
+- Frontend fetches services list from API
+- Homepage and services page render dynamic contents
+
+This structure makes the website updateable without direct code edits.
+
+17. Recommended first implementation priority
+Start with these modules first:
+1. Site Settings
+2. Services
+3. Portfolio
+4. Contact Leads
+5. Homepage basics
+6. Media library
+7. Careers
+8. About page content
+
+This gives the owner immediate value and helps transform the site into a manageable, dynamic business platform.
+
+18. Final recommendation
+This is best implemented as a Next.js full-stack project with:
+- PostgreSQL
+- Prisma
+- NextAuth or custom auth
+- Admin dashboard UI
+- Database-backed content models
+- CRUD management for all major website sections
+- Lead capture and WhatsApp integration
+
+This will allow the business to grow the site over time with minimal developer involvement and will make the brand easy to manage long-term.
