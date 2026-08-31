@@ -291,6 +291,15 @@ export default function HeroSection() {
           <img src="/images/mjrn6.png" alt="Cloud solutions preview" loading="lazy" />
           <span>Cloud Native</span>
         </div>
+
+        <div className="phone-stack" aria-hidden="true">
+          <div className="phone-mockup phone-mockup--left">
+            <img src="/images/mjrn3.png" alt="Mobile app preview" loading="lazy" />
+          </div>
+          <div className="phone-mockup phone-mockup--right">
+            <img src="/images/mjrn5.png" alt="Another mobile app preview" loading="lazy" />
+          </div>
+        </div>
       </div>
 
       <div className="scroll-indicator">

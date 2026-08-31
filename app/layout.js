@@ -1,4 +1,5 @@
 import { Inter, Space_Grotesk } from "next/font/google";
+import AIAssistant from "./components/AIAssistant";
 import "./globals.css";
 
 const inter = Inter({
@@ -46,6 +47,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-sans antialiased text-gray-900 bg-white overflow-x-hidden">
         {children}
+        <AIAssistant />
       </body>
     </html>
   );
