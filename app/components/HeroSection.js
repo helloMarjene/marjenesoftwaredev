@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
+import SITE_IMAGES from "../siteImages";
 
 function ParticleCanvas() {
   const canvasRef = useRef(null);
@@ -205,6 +206,14 @@ function AnimatedCounter({ target, suffix = "" }) {
 export default function HeroSection() {
   const heroVideos = ["/videos/clip1.mp4", "/videos/clip2.mp4", "/videos/clip3.mp4"];
   const [activeVideo, setActiveVideo] = useState(0);
+  const [activePhonePair, setActivePhonePair] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActivePhonePair((pair) => (pair + 1) % (SITE_IMAGES.length / 2));
+    }, 3500);
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   return (
     <section className="hero" id="hero">
@@ -243,6 +252,14 @@ export default function HeroSection() {
               <span>
                 {activeVideo + 1}/{heroVideos.length}
               </span>
+            </div>
+          </div>
+          <div className="phone-stack" aria-hidden="true">
+            <div className="phone-mockup phone-mockup--left">
+              <img src={SITE_IMAGES[activePhonePair * 2]} alt="" loading="lazy" />
+            </div>
+            <div className="phone-mockup phone-mockup--right">
+              <img src={SITE_IMAGES[activePhonePair * 2 + 1]} alt="" loading="lazy" />
             </div>
           </div>
         </div>
@@ -292,14 +309,6 @@ export default function HeroSection() {
           <span>Cloud Native</span>
         </div>
 
-        <div className="phone-stack" aria-hidden="true">
-          <div className="phone-mockup phone-mockup--left">
-            <img src="/images/mjrn3.png" alt="Mobile app preview" loading="lazy" />
-          </div>
-          <div className="phone-mockup phone-mockup--right">
-            <img src="/images/mjrn5.png" alt="Another mobile app preview" loading="lazy" />
-          </div>
-        </div>
       </div>
 
       <div className="scroll-indicator">

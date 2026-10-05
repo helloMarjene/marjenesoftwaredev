@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import SITE_IMAGES from "../siteImages";
+
+const previewTransitions = ["fade", "slide", "zoom", "flip", "rise"];
+const initialPreviewIndex = SITE_IMAGES.indexOf("/images/mjrn11.png");
 
 const projects = [
   {
@@ -52,6 +56,17 @@ export default function PortfolioSection() {
     return () => observer.disconnect();
   }, []);
 
+    const [previewIndex, setPreviewIndex] = useState(initialPreviewIndex);
+    const [transitionIndex, setTransitionIndex] = useState(0);
+
+    useEffect(() => {
+      const intervalId = window.setInterval(() => {
+        setPreviewIndex((index) => (index + 1) % SITE_IMAGES.length);
+        setTransitionIndex((index) => (index + 1) % previewTransitions.length);
+      }, 2600);
+      return () => window.clearInterval(intervalId);
+    }, []);
+
   return (
     <section className="portfolio-preview">
       <div className="section-container">
@@ -70,12 +85,22 @@ export default function PortfolioSection() {
               className={`portfolio-card ${project.large ? "large" : ""}`}
             >
               <div className="portfolio-image">
-                <img
-                  className="portfolio-photo"
-                  src={project.img}
-                  alt={project.title}
-                  loading="lazy"
-                />
+                {i === projects.length - 1 ? (
+                  <img
+                    key={previewIndex}
+                    className={`portfolio-photo portfolio-preview-photo portfolio-preview-photo--${previewTransitions[transitionIndex]}`}
+                    src={SITE_IMAGES[previewIndex]}
+                    alt={`${project.title} image preview`}
+                    loading="lazy"
+                  />
+                ) : (
+                  <img
+                    className="portfolio-photo"
+                    src={project.img}
+                    alt={project.title}
+                    loading="lazy"
+                  />
+                )}
                 <div className="portfolio-overlay">
                   <span className="portfolio-tag">{project.tag}</span>
                   <h3>{project.title}</h3>

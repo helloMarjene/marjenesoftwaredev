@@ -1,180 +1,212 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useEffect, useState } from "react";
 
-const POSTERS = [
+const languages = [
   {
-    image: "/images/mjrn.png",
-    tag: "Web App",
-    title: "E-Commerce Platform",
-    text: "Full-stack e-commerce solution with AI-driven product recommendations and real-time inventory.",
+    name: "JavaScript",
+    icon: "javascript",
+    code: 'console.log("Hello, Marjene!");',
   },
   {
-    image: "/images/mjrn.png",
-    tag: "Mobile App",
-    title: "Health Tracker",
-    text: "Cross-platform health monitoring app with wearable sync and personalized insights.",
+    name: "Python",
+    icon: "python",
+    code: 'print("Hello, Marjene!")',
   },
   {
-    image: "/images/mjrn.png",
-    tag: "Business System",
-    title: "School ERP",
-    text: "End-to-end school management system covering admissions, grading, and fee tracking.",
+    name: "Java",
+    icon: "java",
+    logoSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    code: 'System.out.println("Hello, Marjene!");',
   },
   {
-    image: "/images/mjrn.png",
-    tag: "AI Solution",
-    title: "Smart Analytics",
-    text: "AI-powered business intelligence dashboard turning raw data into decisions.",
+    name: "C++",
+    icon: "cplusplus",
+    code: 'std::cout << "Hello, Marjene!";',
   },
   {
-    image: "/images/mjrn.png",
-    tag: "Enterprise",
-    title: "Hospital Management",
-    text: "Secure patient records, appointment scheduling, and billing in one platform.",
+    name: "PHP",
+    icon: "php",
+    code: 'echo "Hello, Marjene!";',
+  },
+  {
+    name: "C#",
+    icon: "csharp",
+    logoSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+    code: 'Console.WriteLine("Hello, Marjene!");',
+  },
+  {
+    name: "Go",
+    icon: "go",
+    code: 'fmt.Println("Hello, Marjene!")',
+  },
+  {
+    name: "Ruby",
+    icon: "ruby",
+    code: 'puts "Hello, Marjene!"',
+  },
+  {
+    name: "TypeScript",
+    icon: "typescript",
+    code: 'console.log("Hello, Marjene!");',
+  },
+  {
+    name: "Rust",
+    icon: "rust",
+    code: 'fn main() { println!("Hello, Marjene!"); }',
+  },
+  {
+    name: "Swift",
+    icon: "swift",
+    code: 'print("Hello, Marjene!")',
+  },
+  {
+    name: "Kotlin",
+    icon: "kotlin",
+    code: 'println("Hello, Marjene!")',
+  },
+  {
+    name: "Dart",
+    icon: "dart",
+    code: 'print("Hello, Marjene!");',
+  },
+  {
+    name: "C",
+    icon: "c",
+    code: 'printf("Hello, Marjene!");',
+  },
+  {
+    name: "Lua",
+    icon: "lua",
+    code: 'print("Hello, Marjene!")',
+  },
+  {
+    name: "R",
+    icon: "r",
+    code: 'cat("Hello, Marjene!\\n")',
   },
 ];
 
-const TRANSITIONS = ["slide", "slide-reverse", "fade", "zoom", "flip"];
-const INTERVAL_MS = 4500;
-
 export default function PosterCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [transitionIndex, setTransitionIndex] = useState(0);
-  const [slides, setSlides] = useState([
-    { ...POSTERS[0], id: 0, state: "active", transition: "" },
-  ]);
-  const timerRef = useRef(null);
-  const frameRef = useRef(null);
-  const nextIdRef = useRef(1);
-
-  const nextTransition = useCallback(() => {
-    const t = TRANSITIONS[transitionIndex % TRANSITIONS.length];
-    setTransitionIndex((i) => i + 1);
-    return t;
-  }, [transitionIndex]);
-
-  const goToNext = useCallback(() => {
-    const nextIndex = (current + 1) % POSTERS.length;
-    const transition = nextTransition();
-    const newSlide = {
-      ...POSTERS[nextIndex],
-      id: nextIdRef.current++,
-      state: `${transition}-enter-from`,
-      transition,
-    };
-
-    setSlides((prev) => [
-      ...prev.map((s) =>
-        s.state === "active"
-          ? { ...s, state: `${s.transition || transition}-exit-to` }
-          : s
-      ),
-      newSlide,
-    ]);
-
-    requestAnimationFrame(() => {
-      setSlides((prev) =>
-        prev.map((s) => {
-          if (s.id === newSlide.id) {
-            return { ...s, state: "active" };
-          }
-          if (s.state.includes("exit-to")) {
-            return s;
-          }
-          return s;
-        })
-      );
-    });
-
-    setTimeout(() => {
-      setSlides((prev) => prev.filter((s) => s.state !== `${transition}-exit-to` && !s.state.includes("exit-to")));
-    }, 800);
-
-    setCurrent(nextIndex);
-  }, [current, nextTransition]);
-
-  const start = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(goToNext, INTERVAL_MS);
-  }, [goToNext]);
-
-  const stop = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = null;
-  }, []);
+  const [activeLanguage, setActiveLanguage] = useState(0);
+  const [typing, setTyping] = useState({ languageIndex: 0, length: 0 });
+  const language = languages[activeLanguage];
+  const typedLength = typing.languageIndex === activeLanguage ? typing.length : 0;
 
   useEffect(() => {
-    start();
-    const handleVisibility = () => {
-      if (document.hidden) stop();
-      else start();
-    };
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => {
-      stop();
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, [start, stop]);
+    const { code } = languages[activeLanguage];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timeoutId;
+    let rotationTimeoutId;
+    let position = 0;
 
-  const goToDot = (index) => {
-    if (index === current) return;
-    stop();
-    const transition = "fade";
-    const newSlide = {
-      ...POSTERS[index],
-      id: nextIdRef.current++,
-      state: `${transition}-enter-from`,
-      transition,
-    };
-    setSlides((prev) => [
-      ...prev.map((s) =>
-        s.state === "active" ? { ...s, state: `${transition}-exit-to` } : s
-      ),
-      newSlide,
-    ]);
-    requestAnimationFrame(() => {
-      setSlides((prev) =>
-        prev.map((s) =>
-          s.id === newSlide.id ? { ...s, state: "active" } : s
-        )
+    if (reduceMotion) {
+      timeoutId = window.setTimeout(
+        () => setTyping({ languageIndex: activeLanguage, length: code.length }),
+        0
       );
-    });
-    setTimeout(() => {
-      setSlides((prev) => prev.filter((s) => !s.state.includes("exit-to")));
-    }, 800);
-    setCurrent(index);
-    start();
+      rotationTimeoutId = window.setTimeout(() => {
+        setActiveLanguage((index) => (index + 1) % languages.length);
+      }, 5000);
+      return () => {
+        window.clearTimeout(timeoutId);
+        window.clearTimeout(rotationTimeoutId);
+      };
+    }
+
+    const typeCharacter = () => {
+      position += 1;
+      setTyping({ languageIndex: activeLanguage, length: position });
+
+      if (position < code.length) {
+        timeoutId = window.setTimeout(typeCharacter, 58);
+      } else {
+        rotationTimeoutId = window.setTimeout(() => {
+          setActiveLanguage((index) => (index + 1) % languages.length);
+        }, 1700);
+      }
+    };
+
+    timeoutId = window.setTimeout(typeCharacter, 450);
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.clearTimeout(rotationTimeoutId);
+    };
+  }, [activeLanguage]);
+
+  const selectLanguage = (index) => {
+    if (index === activeLanguage) return;
+    setActiveLanguage(index);
   };
 
   return (
-    <section className="poster-carousel-section">
+    <section className="marjene-educate-section" aria-labelledby="marjene-educate-title">
       <div className="section-container">
-        <div
-          className="poster-carousel-frame"
-          id="posterCarouselFrame"
-          ref={frameRef}
-          onMouseEnter={stop}
-          onMouseLeave={start}
-        >
-          {slides.map((slide) => (
-            <div key={slide.id} className={`poster-slide ${slide.state}`}>
-              <img src={slide.image} alt={slide.title} />
-              <div className="poster-slide-text">
-                <span className="poster-slide-tag">{slide.tag}</span>
-                <h3>{slide.title}</h3>
-                <p>{slide.text}</p>
-              </div>
+        <header className="educate-header">
+          <div className="educate-brand">
+            <img src="/images/logo1.png" alt="M.A.R.J.E.N.E logo" loading="lazy" />
+            <div>
+              <span className="section-tag">Learn through code</span>
+              <h2 className="section-title" id="marjene-educate-title">
+                MARJENE <span className="accent-text">EDUCATE</span>
+              </h2>
             </div>
-          ))}
-          <div className="poster-carousel-dots" id="posterCarouselDots">
-            {POSTERS.map((_, i) => (
-              <span
-                key={i}
-                className={i === current ? "active" : ""}
-                onClick={() => goToDot(i)}
-              />
-            ))}
+          </div>
+          <p className="educate-intro">One hello. Many ways to write it.</p>
+        </header>
+
+        <div className="educate-layout">
+          <div className="educate-screen" aria-label={`${language.name} code example`}>
+            <div className="educate-screen-bar">
+              <div className="educate-window-dots" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span className="educate-file-name">hello-world</span>
+              <span className="educate-active-language">
+                <img
+                  src={language.logoSrc || `https://cdn.simpleicons.org/${language.icon}`}
+                  alt=""
+                />
+                {language.name}
+              </span>
+            </div>
+
+            <div className="educate-code" aria-live="polite" aria-atomic="true">
+              <span className="educate-line-number">01</span>
+              <code>
+                {language.code.slice(0, typedLength)}
+                <span className="educate-caret" aria-hidden="true" />
+              </code>
+            </div>
+
+            <div className="educate-output">
+              <span className="educate-output-label">OUTPUT</span>
+              <strong>Hello, Marjene!</strong>
+            </div>
+          </div>
+
+          <div className="educate-language-panel">
+            <h3>Programming languages</h3>
+            <div className="educate-language-grid">
+              {languages.map((item, index) => (
+                <button
+                  className={`educate-language${index === activeLanguage ? " active" : ""}`}
+                  key={item.name}
+                  type="button"
+                  aria-pressed={index === activeLanguage}
+                  onClick={() => selectLanguage(index)}
+                >
+                  <img
+                    src={item.logoSrc || `https://cdn.simpleicons.org/${item.icon}`}
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span>{item.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

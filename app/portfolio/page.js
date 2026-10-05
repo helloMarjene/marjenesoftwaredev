@@ -49,6 +49,14 @@ const projects = [
 ];
 
 const filters = ["All", "Web App", "Mobile App", "Business System", "AI Solution"];
+const portfolioImages = Array.from({ length: 27 }, (_, index) => ({
+  src: `/images/new-image (${index + 1}).jpeg`,
+  alt: `Additional portfolio project ${index + 1}`,
+}));
+const people = Array.from({ length: 16 }, (_, index) => ({
+  name: `Sample Person ${String(index + 1).padStart(2, "0")}`,
+  image: `/images/people-sample-${String(index + 1).padStart(2, "0")}.jpg`,
+}));
 
 export default function PortfolioPage() {
   return (
@@ -107,6 +115,52 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                 </article>
+              ))}
+            </div>
+
+            <section className="portfolio-gallery" aria-labelledby="portfolio-gallery-title">
+              <div className="section-header">
+                <span className="section-tag">More Work</span>
+                <h2 className="section-title" id="portfolio-gallery-title">
+                  Project <span className="accent-text">Gallery</span>
+                </h2>
+              </div>
+              <div className="portfolio-gallery-columns">
+                {portfolioImages.map((image) => (
+                  <figure className="portfolio-gallery-item" key={image.src}>
+                    <img src={image.src} alt={image.alt} loading="lazy" />
+                  </figure>
+                ))}
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section className="people-section" aria-labelledby="people-title">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-tag">With Thanks</span>
+              <h2 className="section-title" id="people-title">
+                Our <span className="accent-text">People</span>
+              </h2>
+              <p className="section-subtitle">
+                Sample portraits for future client and supporter profiles.
+              </p>
+            </div>
+            <div className="people-grid">
+              {people.map((person) => (
+                <figure className="people-item" key={person.name}>
+                  <div className="people-portrait">
+                    {person.image ? (
+                      <img src={person.image} alt={person.name} loading="lazy" />
+                    ) : (
+                      <span className="people-portrait-placeholder" aria-hidden="true">
+                        <i className="fas fa-user" />
+                      </span>
+                    )}
+                  </div>
+                  <figcaption>{person.name}</figcaption>
+                </figure>
               ))}
             </div>
           </div>

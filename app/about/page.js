@@ -11,65 +11,6 @@ import BackToTop from "../components/BackToTop";
    Converted from about.html
    ------------------------------------------------------------ */
 
-/* ---- Stat counter animation (matches navigation.js pattern) ---- */
-function useStatCounters() {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
-
-    const animateCounter = (el) => {
-      const raw = el.getAttribute("data-count");
-      const target = parseFloat(raw);
-      if (isNaN(target)) return;
-
-      const suffix = el.getAttribute("data-suffix") || "";
-      const isDecimal = raw.indexOf(".") !== -1;
-      const duration = 1800;
-      let startTime = null;
-
-      const format = (n) =>
-        (isDecimal ? n.toFixed(1) : Math.round(n)) + suffix;
-
-      const tick = (timestamp) => {
-        if (startTime === null) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        el.textContent = format(target * easeOutExpo(progress));
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          el.textContent = format(target);
-        }
-      };
-
-      requestAnimationFrame(tick);
-    };
-
-    const counterEls =
-      containerRef.current?.querySelectorAll("[data-count]") || [];
-
-    if ("IntersectionObserver" in window && counterEls.length) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.4 }
-      );
-      counterEls.forEach((el) => observer.observe(el));
-      return () => observer.disconnect();
-    } else if (counterEls.length) {
-      counterEls.forEach(animateCounter);
-    }
-  }, []);
-
-  return containerRef;
-}
-
 /* ---- Scroll reveal via IntersectionObserver (self-contained) ---- */
 function useScrollReveal() {
   const ref = useRef(null);
@@ -113,7 +54,6 @@ function useScrollReveal() {
 /* ------------------------------------------------------------ */
 
 export default function AboutPage() {
-  const storyRef = useStatCounters();
   const revealRef = useScrollReveal();
 
   return (
@@ -138,53 +78,47 @@ export default function AboutPage() {
               Our <span className="accent-text">Story</span>
             </h1>
             <p className="page-subtitle" data-reveal data-reveal-delay="200">
-              We design intelligent digital systems that help ambitious
-              businesses move faster, serve better, and scale with confidence.
+              A Uganda-based software development company building intelligent
+              digital solutions for organizations and individuals.
             </p>
           </div>
         </section>
 
         {/* ==================== STORY SECTION ==================== */}
-        <section className="story-section" ref={storyRef}>
+        <section className="story-section">
           <div className="section-container">
             <div className="story-grid">
               <div className="story-content" data-reveal data-reveal-delay="0">
                 <span className="section-tag">Who We Are</span>
                 <h2 className="section-title">
-                  Engineering the <span className="accent-text">Future</span>
+                  Intelligent Digital <span className="accent-text">Solutions</span>
                 </h2>
                 <p className="story-text">
-                  M.A.R.J.E.N.E was built on a simple but ambitious idea: great
-                  technology should do more than function — it should create
-                  clarity, momentum, and measurable value for the people who use
-                  it.
+                  M.A.R.J.E.N.E Software Development is a Uganda-based
+                  technology company that designs and delivers intelligent
+                  digital solutions for businesses, institutions,
+                  organizations, and individuals.
                 </p>
                 <p className="story-text">
-                  Based in Uganda and building for a global market, we bring
-                  together engineering, design, and strategy to create powerful
-                  digital experiences that are thoughtful, scalable, and built to
-                  last.
+                  We combine software engineering, modern technology,
+                  user-centered design, and business understanding to create
+                  reliable products that improve operations and customer
+                  experiences.
                 </p>
                 <p className="story-text">
-                  Whether we are creating a business platform, an AI solution, or
-                  a customer-facing product, we combine technical depth with
-                  business understanding to deliver work that feels premium and
-                  performs with purpose.
+                  Our name stands for Modular Autonomous Responsive Judgement
+                  Execution Network Engine. Based in Uganda, we serve a global
+                  market and support digital transformation within and beyond
+                  the country.
                 </p>
                 <div className="story-stats">
                   <div className="story-stat">
-                    <span className="stat-number" data-count="100">
-                      0
-                    </span>
-                    <span className="stat-suffix">+</span>
-                    <span className="stat-label">Projects Delivered</span>
+                    <span className="stat-number">Uganda</span>
+                    <span className="stat-label">Our home base</span>
                   </div>
                   <div className="story-stat">
-                    <span className="stat-number" data-count="50">
-                      0
-                    </span>
-                    <span className="stat-suffix">+</span>
-                    <span className="stat-label">Happy Clients</span>
+                    <span className="stat-number">Global</span>
+                    <span className="stat-label">Our market</span>
                   </div>
                 </div>
               </div>
@@ -199,10 +133,10 @@ export default function AboutPage() {
                     />
                   </div>
                   <div>
-                    <h3>Innovation First</h3>
+                    <h3>Client-Focused Solutions</h3>
                     <p>
-                      We push boundaries and explore new technologies to deliver
-                      cutting-edge solutions.
+                      We begin by understanding each client&apos;s goals, users,
+                      challenges, and operational requirements.
                     </p>
                   </div>
                 </div>
@@ -215,10 +149,10 @@ export default function AboutPage() {
                     />
                   </div>
                   <div>
-                    <h3>People Centered</h3>
+                    <h3>Connected Operations</h3>
                     <p>
-                      Technology is for people. We design with empathy and build
-                      for impact.
+                      Our management systems support records, finance,
+                      attendance, scheduling, reporting, and communication.
                     </p>
                   </div>
                 </div>
@@ -231,10 +165,10 @@ export default function AboutPage() {
                     />
                   </div>
                   <div>
-                    <h3>Global Reach</h3>
+                    <h3>Built to Adapt</h3>
                     <p>
-                      From Uganda to the world, we serve clients across
-                      continents and industries.
+                      We tailor digital platforms to the needs of each client,
+                      sector, and organization.
                     </p>
                   </div>
                 </div>
@@ -243,7 +177,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ==================== MISSION & VISION ==================== */}
+        {/* ==================== PURPOSE & POSITIONING ==================== */}
         <section className="mission-vision-section">
           <div className="section-container">
             <div className="mv-grid">
@@ -255,12 +189,12 @@ export default function AboutPage() {
                 <div className="mv-icon">
                   <i className="fas fa-bullseye" />
                 </div>
-                <h3>Our Mission</h3>
+                <h3>Our Purpose</h3>
                 <p>
-                  To help ambitious businesses unlock growth through intelligent,
-                  secure, and scalable digital systems. We design and build
-                  solutions that simplify operations, strengthen user
-                  experiences, and create real-world impact.
+                  To help businesses and organizations turn ideas, challenges,
+                  and manual processes into effective digital solutions that
+                  simplify operations, improve service delivery, and support
+                  sustainable growth.
                 </p>
                 <div className="mv-accent" />
               </div>
@@ -273,12 +207,12 @@ export default function AboutPage() {
                 <div className="mv-icon">
                   <i className="fas fa-eye" />
                 </div>
-                <h3>Our Vision</h3>
+                <h3>Our Position</h3>
                 <p>
-                  To become the trusted technology partner for organizations
-                  that want to grow with clarity and confidence — known for
-                  precision, reliability, and digital products that feel as
-                  thoughtful as they are effective.
+                  We partner with organizations adopting, improving, or
+                  expanding their use of technology, building solutions suited
+                  to their requirements rather than relying only on standard
+                  software products.
                 </p>
                 <div className="mv-accent" />
               </div>
@@ -286,16 +220,16 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ==================== CORE VALUES ==================== */}
+        {/* ==================== CORE AREAS ==================== */}
         <section className="values-section">
           <div className="section-container">
             <div className="section-header" data-reveal data-reveal-delay="0">
-              <span className="section-tag">What Drives Us</span>
+              <span className="section-tag">What We Do</span>
               <h2 className="section-title">
-                Core <span className="accent-text">Values</span>
+                Core Areas of <span className="accent-text">Business</span>
               </h2>
               <p className="section-subtitle">
-                The principles that guide everything we do
+                Digital products and services tailored to real operational needs
               </p>
             </div>
 
@@ -303,38 +237,45 @@ export default function AboutPage() {
               {[
                 {
                   num: "01",
-                  icon: "fa-lightbulb",
-                  title: "Innovation",
-                  text: "We constantly explore new technologies and creative approaches to solve complex problems.",
+                  icon: "fa-laptop-code",
+                  title: "Web Development",
+                  text: "Business websites, custom web applications, portals, and content management solutions.",
                   delay: 100,
                 },
                 {
                   num: "02",
-                  icon: "fa-shield-halved",
-                  title: "Integrity",
-                  text: "We build trust through transparency, honesty, and ethical practices in all our dealings.",
+                  icon: "fa-mobile-screen-button",
+                  title: "Mobile Applications",
+                  text: "Responsive, user-friendly Android and iOS applications built around business and organizational needs.",
                   delay: 200,
                 },
                 {
                   num: "03",
-                  icon: "fa-gem",
-                  title: "Excellence",
-                  text: "We pursue the highest standards in design, code quality, and user experience.",
+                  icon: "fa-sitemap",
+                  title: "Management Systems",
+                  text: "Business, school, church, and healthcare systems for records, finance, attendance, scheduling, and reporting.",
                   delay: 300,
                 },
                 {
                   num: "04",
-                  icon: "fa-heart",
-                  title: "Customer Success",
-                  text: "Your success is our success. We measure our achievements by the value we create for you.",
+                  icon: "fa-brain",
+                  title: "AI & Automation",
+                  text: "Intelligent assistants, chatbots, workflow automation, analytics, and AI-powered applications.",
                   delay: 400,
                 },
                 {
                   num: "05",
-                  icon: "fa-chart-line",
-                  title: "Growth",
-                  text: "We believe in continuous learning and improvement, both for ourselves and our clients.",
+                  icon: "fa-cloud",
+                  title: "Cloud & Data",
+                  text: "Cloud-based digital solutions, databases, and information systems that support connected operations.",
                   delay: 500,
+                },
+                {
+                  num: "06",
+                  icon: "fa-compass-drafting",
+                  title: "Design & Consulting",
+                  text: "User interface and experience design, custom software, and digital transformation consulting.",
+                  delay: 600,
                 },
               ].map((v) => (
                 <div
@@ -355,61 +296,54 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ==================== TIMELINE ==================== */}
+        {/* ==================== DELIVERY APPROACH ==================== */}
         <section className="timeline-section">
           <div className="section-container">
             <div className="section-header" data-reveal data-reveal-delay="0">
-              <span className="section-tag">Our Journey</span>
+              <span className="section-tag">How We Work</span>
               <h2 className="section-title">
-                Company <span className="accent-text">Timeline</span>
+                A Clear <span className="accent-text">Process</span>
               </h2>
               <p className="section-subtitle">
-                The milestones that shaped M.A.R.J.E.N.E
+                From understanding the challenge to improving the finished solution
               </p>
             </div>
 
             <div className="timeline">
               {[
                 {
-                  year: "2021",
-                  title: "The Beginning",
-                  text: "M.A.R.J.E.N.E was founded with a vision to bring world-class software development to Uganda and beyond.",
+                  year: "01",
+                  title: "Discovery",
+                  text: "We clarify client goals, users, challenges, and operational requirements.",
                   delay: 100,
                   active: false,
                 },
                 {
-                  year: "2022",
-                  title: "First Major Projects",
-                  text: "Delivered our first enterprise solutions and expanded our team of talented engineers.",
+                  year: "02",
+                  title: "Design",
+                  text: "We shape a practical solution around the needs of the organization and its users.",
                   delay: 200,
                   active: false,
                 },
                 {
-                  year: "2023",
-                  title: "AI & Innovation",
-                  text: "Launched our AI solutions division and integrated machine learning into our core offerings.",
+                  year: "03",
+                  title: "Development",
+                  text: "We build the software using appropriate modern technologies and development tools.",
                   delay: 300,
                   active: false,
                 },
                 {
-                  year: "2024",
-                  title: "Global Expansion",
-                  text: "Expanded our client base internationally and established partnerships across Africa and beyond.",
+                  year: "04",
+                  title: "Testing & Deployment",
+                  text: "We test the solution and prepare it for reliable use in the client's operations.",
                   delay: 400,
                   active: false,
                 },
                 {
-                  year: "2025",
-                  title: "Enterprise Solutions",
-                  text: "Launched comprehensive enterprise solutions including ERP, POS, and management systems.",
+                  year: "05",
+                  title: "Continuous Improvement",
+                  text: "We refine the product over time, with attention to usability, scalability, security, and reliability.",
                   delay: 500,
-                  active: false,
-                },
-                {
-                  year: "2026",
-                  title: "The Future",
-                  text: "Continuing to innovate and expand our impact, building the next generation of intelligent systems.",
-                  delay: 600,
                   active: true,
                 },
               ].map((item) => (
@@ -443,14 +377,14 @@ export default function AboutPage() {
           </div>
           <div className="section-container">
             <div className="cta-content" data-reveal data-reveal-delay="0">
-              <h2>Want to Join Our Journey?</h2>
+              <h2>Ready to build a digital solution?</h2>
               <p>
-                We are building a team of thoughtful builders who care about
-                craft, impact, and solving meaningful problems with technology.
+                Tell us about your organization&apos;s goals, challenges, or manual
+                processes. We will help you explore a solution that fits.
               </p>
               <div className="cta-buttons">
-                <Link href="/careers" className="btn btn-primary btn-large">
-                  <span>View Open Positions</span>
+                <Link href="/contact" className="btn btn-primary btn-large">
+                  <span>Discuss your project</span>
                   <i className="fas fa-arrow-right" />
                 </Link>
                 <Link href="/contact" className="btn btn-secondary btn-large">

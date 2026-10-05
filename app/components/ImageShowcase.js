@@ -3,13 +3,17 @@
 import { useEffect, useRef } from "react";
 
 const images = [
-  { src: "/images/mjrn12.jpeg", alt: "Project showcase 1", large: true },
+  { src: "/images/mjrn12.jpeg", alt: "Project showcase 1" },
   { src: "/images/mjrn6.png", alt: "Project showcase 2" },
   { src: "/images/mjrn4.png", alt: "Project showcase 3" },
-  { src: "/images/mjrn6.png", alt: "Project showcase 4" },
   { src: "/images/mjrn8.png", alt: "Project showcase 5" },
-  { src: "/images/mjrn3.png", alt: "Project showcase 6", large: true },
+  { src: "/images/mjrn3.png", alt: "Project showcase 6" },
+  ...Array.from({ length: 27 }, (_, index) => ({
+    src: `/images/new-image (${index + 1}).jpeg`,
+    alt: `Additional project showcase ${index + 1}`,
+  })),
 ];
+const uniqueImages = Array.from(new Map(images.map((image) => [image.src, image])).values());
 
 export default function ImageShowcase() {
   const headerRef = useRef(null);
@@ -45,14 +49,11 @@ export default function ImageShowcase() {
           </p>
         </div>
 
-        <div className="image-showcase-grid">
-          {images.map((img, i) => (
-            <div
-              key={i}
-              className={`image-showcase-card ${img.large ? "large" : ""}`}
-            >
+        <div className="portfolio-gallery-columns">
+          {uniqueImages.map((img) => (
+            <figure className="portfolio-gallery-item" key={img.src}>
               <img src={img.src} alt={img.alt} loading="lazy" />
-            </div>
+            </figure>
           ))}
         </div>
       </div>
