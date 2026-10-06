@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SITE_IMAGES from "../siteImages";
 import BrandWordmark from "./BrandWordmark";
@@ -162,49 +162,6 @@ function ParticleCanvas() {
   );
 }
 
-function AnimatedCounter({ target, suffix = "" }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated.current) {
-            hasAnimated.current = true;
-            const duration = 1800;
-            const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
-            let startTime = null;
-
-            const tick = (timestamp) => {
-              if (!startTime) startTime = timestamp;
-              const progress = Math.min((timestamp - startTime) / duration, 1);
-              setCount(Math.round(target * easeOutExpo(progress)));
-              if (progress < 1) requestAnimationFrame(tick);
-              else setCount(target);
-            };
-            requestAnimationFrame(tick);
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target]);
-
-  return (
-    <span ref={ref} className="stat-number">
-      {count}
-      <span className="stat-suffix">{suffix}</span>
-    </span>
-  );
-}
-
 export default function HeroSection() {
   const heroVideos = ["/videos/clip1.mp4", "/videos/clip2.mp4", "/videos/clip3.mp4"];
   const [activeVideo, setActiveVideo] = useState(0);
@@ -277,24 +234,6 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        <div className="hero-stats">
-          <div className="stat-item">
-            <AnimatedCounter target={100} suffix="+" />
-            <span className="stat-label">Projects</span>
-          </div>
-          <div className="stat-item">
-            <AnimatedCounter target={50} suffix="+" />
-            <span className="stat-label">Clients</span>
-          </div>
-          <div className="stat-item">
-            <AnimatedCounter target={10} suffix="+" />
-            <span className="stat-label">Technologies</span>
-          </div>
-          <div className="stat-item">
-            <AnimatedCounter target={5} suffix="+" />
-            <span className="stat-label">Years Experience</span>
-          </div>
-        </div>
       </div>
 
       <div className="hero-floating-cards">
