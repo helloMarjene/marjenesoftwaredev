@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const buildWhatsAppMessage = (data) => {
   const name = data.get("name")?.toString().trim() || "Client";
@@ -56,7 +57,7 @@ export default function ContactPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/hero-contact.jpeg" alt="Contact hero" loading="eager" />
+            <HeroImageCarousel alt="Contact M.A.R.J.E.N.E Software Development" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Contact</span>

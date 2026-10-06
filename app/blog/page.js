@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const posts = [
   {
@@ -38,7 +39,7 @@ export default function BlogPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/mjrn1.png" alt="Blog hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E blog and digital work" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Insights</span>

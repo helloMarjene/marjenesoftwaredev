@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandWordmark from "./BrandWordmark";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -26,10 +27,10 @@ export default function Navbar() {
     setMenuOpen(true);
   }, []);
 
-  const closeMenu = useCallback(() => {
+  const closeMenu = useCallback((restoreScroll = true) => {
     document.body.classList.remove("mje-menu-open");
     document.body.style.top = "";
-    window.scrollTo(0, lockedScrollY);
+    if (restoreScroll) window.scrollTo(0, lockedScrollY);
     setMenuOpen(false);
   }, [lockedScrollY]);
 
@@ -74,9 +75,8 @@ export default function Navbar() {
       data-state={scrolled ? "scrolled" : "top"}
     >
       <div className="mje-nav__inner">
-        <Link href="/" className="mje-nav__logo" aria-label="M.A.R.J.E.N.E — home">
-          <span className="mje-nav__mark">M.A.R.J.E.N.E</span>
-          <span className="mje-nav__tag">SOFTWARE DEVELOPMENT</span>
+        <Link href="/" className="mje-nav__logo" aria-label="MARJENE Software Development — home">
+          <BrandWordmark variant="nav" />
         </Link>
 
         <nav
@@ -91,7 +91,7 @@ export default function Navbar() {
               href={link.href}
               className="mje-nav__link"
               aria-current={isActivePath(link.href) ? "page" : undefined}
-              onClick={closeMenu}
+              onClick={() => closeMenu(false)}
             >
               {link.label}
             </Link>
@@ -99,7 +99,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             className="mje-nav__link mje-nav__cta"
-            onClick={closeMenu}
+            onClick={() => closeMenu(false)}
           >
             Start a project
           </Link>

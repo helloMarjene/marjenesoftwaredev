@@ -16,6 +16,14 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Website Chat Assistant
+
+The floating assistant answers from the website's published information using the OpenAI API. Copy `.env.example` to `.env.local`, set `OPENAI_API_KEY` to your server-side API key, then restart the development server. Keep the key private and do not prefix it with `NEXT_PUBLIC_`.
+
+Pricing questions always link visitors to the business WhatsApp number. Without an OpenAI key, the assistant still answers common website questions locally and offers WhatsApp for unknown questions.
+
+For direct translations, enable Google Cloud Translation and set `GOOGLE_TRANSLATE_API_KEY` in `.env.local`. If no Google key is set but `OPENAI_API_KEY` is available, the assistant can translate using OpenAI. Without either key, it opens a prefilled Google Translate page. These keys must remain server-side.
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

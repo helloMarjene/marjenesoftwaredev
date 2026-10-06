@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import SITE_IMAGES from "../siteImages";
+import BrandWordmark from "./BrandWordmark";
+import HeroImageCarousel from "./HeroImageCarousel";
 
 function ParticleCanvas() {
   const canvasRef = useRef(null);
@@ -218,6 +220,7 @@ export default function HeroSection() {
   return (
     <section className="hero" id="hero">
       <div className="hero-bg">
+        <HeroImageCarousel className="hero-image-carousel--home" decorative />
         <div className="subtle-orb orb-1"></div>
         <div className="subtle-orb orb-2"></div>
         <div className="subtle-orb orb-3"></div>
@@ -230,9 +233,8 @@ export default function HeroSection() {
           <span>Based in Uganda, Serving the World</span>
         </div>
 
-        <h1 className="hero-title">
-          <span className="title-line accent-text">M.A.R.J.E.N.E</span>
-          <span className="title-line">SOFTWARE DEVELOPMENT</span>
+        <h1 className="hero-title hero-title--wordmark">
+          <BrandWordmark variant="hero" />
         </h1>
 
         <div className="hero-video-showcase" aria-label="Featured video showcase">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const docs = [
   {
@@ -34,7 +35,7 @@ export default function DocumentationPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/mjrn3.png" alt="Documentation hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E software documentation" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Documentation</span>

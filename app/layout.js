@@ -15,9 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: "M.A.R.J.E.N.E Software Development",
+  title: "MARJENE Software Development",
   description:
-    "M.A.R.J.E.N.E - Engineering Intelligent Digital Solutions. Building intelligent systems, modern applications, websites, mobile platforms, AI solutions, and enterprise software.",
+    "MARJENE Software Development — Engineering Intelligent Digital Solutions. Building intelligent systems, modern applications, websites, mobile platforms, AI solutions, and enterprise software.",
   icons: {
     icon: "/images/marjene-robot.png",
   },

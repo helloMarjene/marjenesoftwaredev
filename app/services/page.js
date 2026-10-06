@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const services = [
   {
@@ -83,7 +84,7 @@ export default function ServicesPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/hero-services.jpeg" alt="Services hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E software services" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Our Services</span>

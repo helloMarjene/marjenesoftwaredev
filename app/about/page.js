@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 /* ------------------------------------------------------------
    About Page — M.A.R.J.E.N.E Software Development
@@ -68,7 +69,7 @@ export default function AboutPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/hero-about.jpeg" alt="About hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E software development" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag" data-reveal data-reveal-delay="0">

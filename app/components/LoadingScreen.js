@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import BrandWordmark from "./BrandWordmark";
 
 export default function LoadingScreen() {
   const [hidden, setHidden] = useState(false);
@@ -13,7 +14,7 @@ export default function LoadingScreen() {
   return (
     <div className={`loading-screen ${hidden ? "hidden" : ""}`} id="loadingScreen">
       <div className="loading-content">
-        <div className="loading-logo">M.A.R.J.E.N.E</div>
+        <BrandWordmark variant="loading" />
         <div className="loading-bar">
           <div className="loading-progress"></div>
         </div>

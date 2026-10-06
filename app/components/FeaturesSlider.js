@@ -1,39 +1,29 @@
 import SITE_IMAGES from "../siteImages";
 
 const existingSliderImages = [
-  { src: "/images/mjrn3.png", title: "Fast Development", desc: "Rapid prototyping" },
-  { src: "/images/mjrn12.jpeg", title: "Secure Architecture", desc: "Enterprise-grade security" },
-  { src: "/images/mjrn5.png", title: "Cross Platform", desc: "Universal reach" },
-  { src: "/images/mjrn6.png", title: "24/7 Support", desc: "Always available" },
-  { src: "/images/mjrn7.png", title: "Enterprise Ready", desc: "Built to scale" },
-  { src: "/images/mjrn8.png", title: "Modern Tech", desc: "Latest stack" },
-  { src: "/images/mjrn.png", title: "Custom Solutions", desc: "Tailored for you" },
-  { src: "/images/mjrn4.png", title: "Scalable", desc: "Grows with you" },
-  { src: "/images/mjrn11.png", title: "Flexible", desc: "Adaptive design" },
+  { src: "/images/mjrn3.png", alt: "Software development project" },
+  { src: "/images/mjrn12.jpeg", alt: "Secure architecture project" },
+  { src: "/images/mjrn5.png", alt: "Cross-platform application" },
+  { src: "/images/mjrn6.png", alt: "Support platform" },
+  { src: "/images/mjrn7.png", alt: "Enterprise system" },
+  { src: "/images/mjrn8.png", alt: "Modern technology project" },
+  { src: "/images/mjrn.png", alt: "Custom software solution" },
+  { src: "/images/mjrn4.png", alt: "Scalable software system" },
+  { src: "/images/mjrn11.png", alt: "Flexible digital product" },
 ];
 
 const newSliderImages = SITE_IMAGES
   .filter((src) => /^\/images\/new-image \(\d+\)\.jpeg$/.test(src))
   .map((src, index) => ({
     src,
-    title: `Project Showcase ${index + 1}`,
-    desc: "Additional project image",
+    alt: `Additional project image ${index + 1}`,
   }));
 const sliderImages = [...existingSliderImages, ...newSliderImages];
 
 function SliderItem({ img, decorative = false }) {
   return (
     <div className="slider-img-item">
-      <img src={img.src} alt={decorative ? "" : img.title} loading="lazy" />
-      <div className="slider-img-caption">
-        <div className="slider-icon">
-          <i className="fas fa-star"></i>
-        </div>
-        <div>
-          <h4>{img.title}</h4>
-          <p>{img.desc}</p>
-        </div>
-      </div>
+      <img src={img.src} alt={decorative ? "" : img.alt} loading="lazy" />
     </div>
   );
 }

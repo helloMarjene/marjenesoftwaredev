@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const caseStudies = [
   {
@@ -46,7 +47,7 @@ export default function CaseStudiesPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/mjrn11.png" alt="Case studies hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E project case studies" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Case Studies</span>

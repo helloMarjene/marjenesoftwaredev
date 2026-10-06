@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import HeroImageCarousel from "../components/HeroImageCarousel";
 
 const projects = [
   {
@@ -52,6 +53,7 @@ const filters = ["All", "Web App", "Mobile App", "Business System", "AI Solution
 const portfolioImages = Array.from({ length: 27 }, (_, index) => ({
   src: `/images/new-image (${index + 1}).jpeg`,
   alt: `Additional portfolio project ${index + 1}`,
+  shape: ["circle", "oval", "arch", "soft-square", "diamond"][index % 5],
 }));
 const people = Array.from({ length: 16 }, (_, index) => ({
   name: `Sample Person ${String(index + 1).padStart(2, "0")}`,
@@ -70,7 +72,7 @@ export default function PortfolioPage() {
             <div className="soft-orb orb-2" />
           </div>
           <div className="page-hero-visual">
-            <img src="/images/hero-portfolio.jpeg" alt="Portfolio hero" loading="eager" />
+            <HeroImageCarousel alt="M.A.R.J.E.N.E selected projects" />
           </div>
           <div className="page-hero-content">
             <span className="page-tag">Portfolio</span>
@@ -127,7 +129,7 @@ export default function PortfolioPage() {
               </div>
               <div className="portfolio-gallery-columns">
                 {portfolioImages.map((image) => (
-                  <figure className="portfolio-gallery-item" key={image.src}>
+                  <figure className={`portfolio-gallery-item portfolio-gallery-item--${image.shape}`} key={image.src}>
                     <img src={image.src} alt={image.alt} loading="lazy" />
                   </figure>
                 ))}
